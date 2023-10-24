@@ -1,34 +1,36 @@
-#include <iostream>
-#include <cstdlib>
-
+#include<iostream>
 using namespace std;
 
 int main() {
-    int* tableau = (int*)malloc(10 * sizeof(int));
+    int taille;
 
-    cout << "Entrez 10 entiers : ";
-    for (int i = 0; i < 10; i++) {
-        cin >> tableau[i];
+    cout << "veuillez Entrez la taille du tableau : ";
+    cin >> taille;
+
+    int* tableau1 = new int[taille];
+
+    cout << "Entrez " << taille << " nombres entiers : ";
+    for (int i = 0; i < taille; i++) {
+        cin >> tableau1[i];
     }
 
-    int nombre = 0;
-    for (int i = 0; i < 10; i++) {
-        for (int j = 0; j < 10 - i; j++) {
-            if (tableau[j] > tableau[j + 1]) {
-                int temp = tableau[j];
-                tableau[j] = tableau[j + 1];
-                tableau[j + 1] = temp;
-            }
-        }
+    int* tableau2 = new int[taille];
+
+    for (int i = 0; i < taille; i++) {
+        tableau2[i] = tableau1[i] * tableau1[i];
     }
 
-    cout << "Tableau trie par ordre croissant : ";
-    for (int i = 0; i < 10; i++) {
-        cout << tableau[i] << " ";
+    delete[] tableau1;
+
+    cout << "Carres des nombres du premier tableau : ";
+    for (int i = 0; i < taille; i++) {
+        cout << tableau2[i] << " ";
     }
     cout << endl;
 
-    free(tableau);
+    delete[] tableau2;
 
     return 0;
 }
+
+
